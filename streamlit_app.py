@@ -42,8 +42,8 @@ def predict(img):
     index = np.argmax(prediction)
     class_name = class_names[index]
     confidence_score = prediction[0][index]
-    st.write("Class:", class_name[1:])
-    st.write("Confidence Score:", confidence_score)
+    st.write("__Class:__", class_name[1:])
+    st.write("__Confidence Score:__", confidence_score)
 
 def click(img):
     predict(img)
