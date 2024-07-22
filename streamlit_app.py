@@ -51,7 +51,7 @@ def click(img):
     predict(img)
     fix_image(img)
 
-my_upload = st.sidebar.file_uploader("", type=["png", "jpg", "jpeg"])
+my_upload = st.sidebar.file_uploader("Image", type=["png", "jpg", "jpeg"], label_visibility="collapsed")
 st.sidebar.button(
     "__Predict x-ray__", on_click=predict, args=(my_upload,), disabled= my_upload is None
 )
