@@ -16,19 +16,20 @@ class_names = open(r"./labels.txt", "r").readlines()
 
 #WEB GUI start
 st.set_page_config(layout="centered", page_title="X-ray AI")
-
-st.header("X-ray predictor", divider='rainbow')
+with st.container():
+    st.header("X-ray predictor", divider='rainbow')
 st.sidebar.write("## Upload image :gear:")
 
 
 MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
-
+#Show image
 def fix_image(upload):
     with st.container(border=True):
         image = Image.open(upload)
         st.write("#Uploaded Image :camera:")
         st.image(image)
 
+#Predict image
 def predict(img):
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
     imagex = Image.open(img).convert("RGB")
@@ -42,8 +43,9 @@ def predict(img):
     index = np.argmax(prediction)
     class_name = class_names[index]
     confidence_score = prediction[0][index]
-    st.write("__Class:__", class_name[1:])
-    st.write("__Confidence Score:__", confidence_score)
+    with st.container(border=True):
+        st.write("__Class:__", class_name[1:])
+        st.write("__Confidence Score:__", confidence_score)
 
 def click(img):
     predict(img)
