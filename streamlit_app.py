@@ -9,10 +9,10 @@ import numpy as np
 np.set_printoptions(suppress=True)
 
 # Load the model
-model = load_model(r"xray-ai-child-main/keras_model.h5", compile=False)
+model = load_model(r"./keras_model.h5", compile=False)
 
 # Load the labels
-class_names = open(r"xray-ai-child-main/labels.txt", "r").readlines()
+class_names = open(r"./labels.txt", "r").readlines()
 
 #WEB GUI start
 st.set_page_config(layout="centered", page_title="X-ray AI")
@@ -55,9 +55,9 @@ my_upload = st.sidebar.file_uploader("Image", type=["png", "jpg", "jpeg"], label
 st.sidebar.button(
     "__Predict x-ray__", on_click=predict, args=(my_upload,), disabled= my_upload is None
 )
-st.button("Use NORMAL example", on_click=click, args=("xray-ai-child-main/NORMAL.jpeg",))
-st.button("Use BACTERIA example", on_click=click, args=("xray-ai-child-main/person1954_bacteria_4886.jpeg",))
-st.button("Use VIRUS example", on_click=click, args=("xray-ai-child-main/person563_virus_1103.jpeg",))
+st.button("Use NORMAL example", on_click=click, args=("./NORMAL.jpeg",))
+st.button("Use BACTERIA example", on_click=click, args=("./person1954_bacteria_4886.jpeg",))
+st.button("Use VIRUS example", on_click=click, args=("./person563_virus_1103.jpeg",))
 
 if my_upload is not None:
     fix_image(my_upload)
